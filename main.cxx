@@ -7,8 +7,11 @@
 #include <curl/curl.h>
 #include <condition_variable> // Add this line
 
-// Number of concurrent downloads allowed
-const int MAX_CONCURRENT_DOWNLOADS = 4;
+// Get the number of CPU cores
+unsigned int numCores = std::thread::hardware_concurrency();
+    
+// Set MAX_CONCURRENT_DOWNLOADS to the number of CPU cores
+const int MAX_CONCURRENT_DOWNLOADS = numCores;
 
 // Semaphore implementation
 class Semaphore {
@@ -60,6 +63,8 @@ void downloadFile(const std::string& url, const std::string& downloadDirectory) 
         if (fp) {
             curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
             curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
+            curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1L); // Enable progress meter
+            curl_easy_setopt(curl, CURLOPT_PROGRESSFUNCTION, NULL); // Disable default progress meter
 
             CURLcode res = curl_easy_perform(curl);
             if (res != CURLE_OK) {

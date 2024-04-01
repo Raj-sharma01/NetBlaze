@@ -1,12 +1,13 @@
-1. download multiple files at a time ✅️
-2. download multiple folders at a time
-3. if downloadDirectory does not exist then create one
-4. download multiple files of different types at a time
-5. add a progressbar for each download which contains
-    1. % downloaded
-    2. estimate download time
-    3. download speed
-    4. file/folder size  
-6. if connection fails during download the next download will start from where it left [buffer the file]
-7. maintain a history of download [SQLite]
-    1. perform some crud operaration on history
+- download multiple files at a time ✅️
+- download multiple folders at a time
+- if downloadDirectory does not exist then create one [ default ~/Downloads]
+- download multiple files of different types at a time ✅️
+- add a progressbar for each download which contains
+    - % downloaded
+    - estimate download time
+    - download speed
+    - file/folder size  
+    - file/folder name
+- if connection fails during download the next download will start from where it left [buffer the file]
+- maintain a history of download [SQLite]
+    - perform some crud operaration on history
